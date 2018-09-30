@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">SQLite2018</string>
+    <string name="new_note_title">Новая заметка</string>
+    <string name="edit_note_title">Редактировать заметку</string>
+    <string name="hint_enter_note">ведите текст заметки</string>
+    <string name="title_activity_main">Напоминания От Лизки</string>
+    <string name="no_notes">Нет заметок</string>
+</resources>
