@@ -1,34 +1,26 @@
 package com.example.android.sqlite2018;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.annotation.NonNull;
 
+@Entity
 public class Note {
 
-    public static final String TABLE_NAME = "notes";
-    public static final String COLUMN_ID = "id";
-    public static final String COLUMN_NOTE = "note";
-    public static final String COLUMN_TIMESTAMP = "timestamp";
-
-    private int id;
+    @PrimaryKey(autoGenerate = true)
+    @NonNull
+    private int id = 0;
     private String note;
-    private String timestamp;
 
-    // Create table SQL query
-    public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " ("
-                        + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                            COLUMN_NOTE + " TEXT, " + COLUMN_TIMESTAMP
-                                + " DATETIME DEFAULT CURRENT_TIMESTAMP" + ");";
-    public Note(){
-    }
-    public Note(int id, String note, String timestamp){
-        this.id = id;
-        this.note = note;
-        this.timestamp = timestamp;
+    @NonNull
+    public int getId() {
+        return id;
     }
 
-    public void setId(int id) {
+    public void setId(@NonNull int id) {
         this.id = id;
     }
 
@@ -36,19 +28,8 @@ public class Note {
         this.note = note;
     }
 
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public int getId() {
-        return id;
-    }
-
     public String getNote() {
         return note;
     }
 
-    public String getTimestamp() {
-        return timestamp;
-    }
 }

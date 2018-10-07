@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +17,7 @@ import java.util.Date;
 import java.util.List;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder> {
-
-    private Context context;
     private List<Note> notesList;
-
-
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
         public TextView dot;
@@ -35,8 +32,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
         }
     }
 
-    public NotesAdapter (Context context, List<Note> notesList){
-        this.context = context;
+    public NotesAdapter (List<Note> notesList){
         this.notesList = notesList;
     }
 
@@ -57,7 +53,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
 
         holder.dot.setText(Html.fromHtml("&#8226;"));
 
-        holder.timestamp.setText(formatDate(note.getTimestamp()));
+        holder.timestamp.setText(formatDate());
     }
 
     @Override
@@ -66,16 +62,9 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
     }
 
 
-    private String formatDate(String dateStr){
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Date date = sdf.parse(dateStr);
-            SimpleDateFormat sdfOut = new SimpleDateFormat("dd MMM yyyy");
-            return sdfOut.format(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        return "";
+    private String formatDate() {
+        Date date = new Date();
+        SimpleDateFormat sdfOut = new SimpleDateFormat("dd MMM yyyy");
+        return sdfOut.format(date);
     }
 }
